@@ -10,6 +10,7 @@
 ------------------------------------------------------------------
 
 简单修改 Github Profile 的说明：https://www.sitepoint.com/github-profile-readme/
+深入修改 Github Profile 的参考：https://github.com/LHRUN/bubble
 
 ------------------------------------------------------------------
 
