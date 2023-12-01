@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+可拖动对象的指针与触摸实现：[https://www.sitepoint.com/github-profile-readme/](https://www.redblobgames.com/making-of/draggable/)
+
+------------------------------------------------------------------
+
 简单修改 Github Profile 的说明：https://www.sitepoint.com/github-profile-readme/
 
 ------------------------------------------------------------------
