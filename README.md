@@ -74,12 +74,12 @@ firewall-cmd --reload
 ```
 yes | find /home -name 'video-???' -type d | xargs -L 1 -t -I {} unzip xxx.zip "video/*" -d {}/bin/
 ```
-此处示例前半段表示从/home路径下搜索video-xxx的目录
-后半段表示将前半段输出的每一行以参数填充到预设指令中
--L 1表示管道里每行作为一个参数，也可以多行作为一个参数，连接符为\n
--I {}表示参数的占位符，预设指令中出现该占位符的地方会被替换
--t 表示输出具体执行的完整指令，管道有多输出就可能会显示多条指令
-从unzip开始的都是预设指令，在管道输出方式下就能实现多输出
+- 此处示例前半段表示从/home路径下搜索video-xxx的目录
+- 后半段表示将前半段输出的每一行以参数填充到预设指令中
+- -L 1表示管道里每行作为一个参数，也可以多行作为一个参数，连接符为\n
+- -I {}表示参数的占位符，预设指令中出现该占位符的地方会被替换
+- -t 表示输出具体执行的完整指令，管道有多输出就可能会显示多条指令
+- 从unzip开始的都是预设指令，在管道输出方式下就能实现多输出
 
 ------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ yes | find /home -name 'video-???' -type d | xargs -L 1 -t -I {} unzip xxx.zip "
 
 网卡配置文件后半段为网卡名称，文件里的配置名需要和这部分名称保持一致，启用网卡时注意区分名称。
 
-默认情况下配置文件里应该是dhcp模式，需要指定IP的话参考[此文](https://blog.csdn.net/hjxloveqsx/article/details/120529147)
+默认情况下配置文件里应该是dhcp模式，需要指定IP的话参考 [此文](https://blog.csdn.net/hjxloveqsx/article/details/120529147)
 
 修改完网卡配置还需要在`/etc/sysconfig/network`里加一行`NETWORKING=yes`后保存退出
 
@@ -142,8 +142,7 @@ convert -density 256x256 -background transparent favicon.svg -define icon:auto-r
 
 ------------------------------------------------------------------
 
-获取chrome mini版本安装包的方法
-https://stackoverflow.com/questions/54927496/how-to-download-older-versions-of-chrome-from-a-google-official-site
+获取chrome mini版本安装包的方法参考 [此文](https://stackoverflow.com/questions/54927496/how-to-download-older-versions-of-chrome-from-a-google-official-site)
 
 ------------------------------------------------------------------
 
