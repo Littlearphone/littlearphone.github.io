@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+制作支持开关和命名参数的Windows脚本：[https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters](https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters)
+
+------------------------------------------------------------------
+
 一个推荐网页小游戏的帖子：https://news.ycombinator.com/item?id=37931804
 
 ------------------------------------------------------------------
