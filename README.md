@@ -5,7 +5,9 @@
 
 ------------------------------------------------------------------
 
-制作支持开关和命名参数的Windows脚本：[https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters](https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters)
+制作支持开关和命名参数的Windows脚本：
+[https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters](https://stackoverflow.com/questions/15420004/write-batch-file-with-hyphenated-parameters)
+[https://superuser.com/questions/811835/passing-command-line-arguments-to-a-windows-batch-script](https://superuser.com/questions/811835/passing-command-line-arguments-to-a-windows-batch-script)
 
 ------------------------------------------------------------------
 
