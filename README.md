@@ -5,8 +5,26 @@
 
 ------------------------------------------------------------------
 
+intellij开源的反编译库：
+[https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine)
+
+------------------------------------------------------------------
+
 Windows端口转发：
-[https://blog.csdn.net/fnFenNuDManMan/article/details/103288807](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)
+
+1.新增端口转发
+```bash
+netsh interface portproxy add v4tov4 listenport=9000 connectaddress=192.168.99.100 connectport=9000
+```
+2.查看端口转发
+```bash
+netsh interface portproxy show all
+```
+3.删除端口转发
+```bash
+netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.253.4 protocol=tcp
+```
+来源：[https://blog.csdn.net/fnFenNuDManMan/article/details/103288807](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)
 
 ------------------------------------------------------------------
 
