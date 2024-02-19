@@ -5,8 +5,8 @@
 
 ------------------------------------------------------------------
 
-windows端口转发：
-[[https://alan.norbauer.com/articles/browser-debugging-tricks](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)]([https://alan.norbauer.com/articles/browser-debugging-tricks](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807))
+Windows端口转发：
+[https://blog.csdn.net/fnFenNuDManMan/article/details/103288807](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)
 
 ------------------------------------------------------------------
 
