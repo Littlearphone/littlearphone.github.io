@@ -35,6 +35,9 @@ netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.25
 有意思的前端调试技巧：
 [https://alan.norbauer.com/articles/browser-debugging-tricks](https://alan.norbauer.com/articles/browser-debugging-tricks)
 
+一些Web的拦截技巧：
+[https://hughfenghen.github.io/posts/2023/12/23/web-spy/](https://hughfenghen.github.io/posts/2023/12/23/web-spy/)
+
 ------------------------------------------------------------------
 
 制作支持开关和命名参数的Windows脚本：  
