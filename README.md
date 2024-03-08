@@ -54,8 +54,9 @@ netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.25
 
 ------------------------------------------------------------------
 
-简单修改 Github Profile 的说明：https://www.sitepoint.com/github-profile-readme/
-深入修改 Github Profile 的参考：https://github.com/LHRUN/bubble
+简单修改 Github Profile 的说明：[https://www.sitepoint.com/github-profile-readme/](https://www.sitepoint.com/github-profile-readme/)
+
+深入修改 Github Profile 的参考：[https://github.com/LHRUN/bubble](https://github.com/LHRUN/bubble)
 
 ------------------------------------------------------------------
 
@@ -106,6 +107,7 @@ systemctl stop firewalld.service
 ------------------------------------------------------------------
 
 使用firewalld防火墙限制白名单访问
+
 屏蔽所有IP使用tcp访问9200端口
 ```
 firewall-cmd --permanent --add-rich-rule='rule family="ipv4" port protocol="tcp" port="9200" drop'
@@ -117,7 +119,8 @@ firewall-cmd --zone=trusted --add-source=10.8.0.0/16 --permanent
 # firewall-cmd --zone=trusted --remove-source=10.8.0.0/16 --permanent
 ```
 添加的规则使用`firewall-cmd --list-all`查看
-重新加载配置，使其生效
+
+最后，重新加载配置，使其生效
 ```
 firewall-cmd --reload
 ```
@@ -167,17 +170,21 @@ rpm -ivh net-tools-2.0-0.52.20160912git.el8.x86_64.rpm
 ------------------------------------------------------------------
 
 使用`journalctl --vacuum-size=1G`可以限制系统日志的存储上限
+
 使用`journalctl --vacuum-time=2d`可以限制系统日志的存储时限
 
 ------------------------------------------------------------------
 
 `du -h <dir> | grep '[0-9\.]\+G'`可以分析指定路径下的空间占用
+
 在 -h 之前增加 --exclude=PATTERN 可以排除某些路径提高分析速度
 
 ------------------------------------------------------------------
 
 通过 http://ip:port/_alias 可以列出 ES 所有的索引别名
+
 通过 http://ip:port/_cat/indices/keyword*?v 可以筛选 ES 的索引
+
 筛选地址末尾的v参数用来显示返回结果列的标题
 
 ------------------------------------------------------------------
