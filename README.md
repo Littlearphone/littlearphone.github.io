@@ -6,6 +6,7 @@
 ------------------------------------------------------------------
 
 Chrome插件：Tampermokey、Vimium、SingleFile、沉浸式翻译、uBlock、Ghelper
+
 快捷方式尾部加启动参数： --test-type --ignore-certificate-errors --enable-easy-off-store-extension-install --disable-web-security --user-data-dir=D:\Portable\ChromeCORS
 
 ------------------------------------------------------------------
