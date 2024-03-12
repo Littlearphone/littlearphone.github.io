@@ -5,6 +5,15 @@
 
 ------------------------------------------------------------------
 
+Chrome插件：Tampermokey、Vimium、SingleFile、沉浸式翻译、uBlock、Ghelper
+快捷方式尾部加启动参数： --test-type --ignore-certificate-errors --enable-easy-off-store-extension-install --disable-web-security --user-data-dir=D:\Portable\ChromeCORS
+
+------------------------------------------------------------------
+
+windows系统文件扫描与恢复 (不一定有效)：[https://answers.microsoft.com/en-us/windows/forum/all/cant-uninstall-windows-update/ff638684-ceee-465b-8c69-c462fbe4f648](https://answers.microsoft.com/en-us/windows/forum/all/cant-uninstall-windows-update/ff638684-ceee-465b-8c69-c462fbe4f648)
+
+------------------------------------------------------------------
+
 SVG学习：[https://svg-tutorial.com/](https://svg-tutorial.com/)
 
 ------------------------------------------------------------------
