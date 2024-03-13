@@ -5,7 +5,30 @@
 
 ------------------------------------------------------------------
 
-Chrome插件：Tampermokey、Vimium、SingleFile、沉浸式翻译、uBlock、Ghelper
+winget切换源：[https://dashen.wang/7003.html](https://dashen.wang/7003.html)
+
+在`%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json`（没有就新建）里增加以下配置：
+
+```
+{
+    "source": {
+        "autoUpdateIntervalInMinutes": 5,
+        "sources": [
+            {
+                "type": "Microsoft.PreIndexed.Package",
+                "identifier": "Tuna",
+                "arg": "https://mirrors.tuna.tsinghua.edu.cn/winget",
+                "enabled": true,
+                "lastUpdateTime": "2021-05-20T12:00:00.0000000Z"
+            }
+        ]
+    }
+}
+```
+
+------------------------------------------------------------------
+
+Chrome可用插件：Tampermokey、Vimium C、SingleFile、沉浸式翻译、uBlock、Ghelper
 
 快捷方式尾部加启动参数： --test-type --ignore-certificate-errors --enable-easy-off-store-extension-install --disable-web-security --user-data-dir=D:\Portable\ChromeCORS
 
