@@ -5,6 +5,12 @@
 
 ------------------------------------------------------------------
 
+基于源码的PG编译：[https://www.postgresql.org/docs/current/installation.html](https://www.postgresql.org/docs/current/installation.html)
+
+下载地址：[https://www.postgresql.org/ftp/source/](https://www.postgresql.org/ftp/source/)
+
+------------------------------------------------------------------
+
 删除或恢复分区上方的文件夹
 
 将下面的内容保存为Remove-Explorer-Folders-(64-bit Windows).reg文件：
