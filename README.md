@@ -23,11 +23,11 @@
 
 6. 为 PG 创建数据目录，可以建在 PG 的安装目录（`/usr/local/pgsql`）也可以另外找目录
 
-```
-mkdir -p /usr/local/pgsql/data
-或
-mkdir -p /opt/pg-data
-```
+    ```
+    mkdir -p /usr/local/pgsql/data
+    或
+    mkdir -p /opt/pg-data
+    ```
 
 7. 为数据目录设置所属`chown postgres /opt/pg-data`
 
@@ -37,9 +37,18 @@ mkdir -p /opt/pg-data
 
 10. 启动 PG 服务`/usr/local/pgsql/bin/pg_ctl -D /opt/pg-data -l logfile start`
 
-11. 【可选】创建数据库`/usr/local/pgsql/bin/createdb test`
+11. 【可选】超管密码可能需要在 pg_hba.conf 里启用受信地址后登录上去指定
 
-12. 【可选】连接数据库`/usr/local/pgsql/bin/psql test`
+    ```
+    /usr/local/pgsql/bin/psql postgres
+    ALTER USER user_name WITH PASSWORD 'new_password';
+    ```
+
+12. 【可选】远程登录需要修改 postgresql.conf 启用 listen_addresses 配置：\* 表示所有
+
+13. 【可选】创建数据库`/usr/local/pgsql/bin/createdb test`
+
+14. 【可选】连接数据库`/usr/local/pgsql/bin/psql test`
 
 ------------------------------------------------------------------
 
