@@ -44,7 +44,7 @@
     ALTER USER user_name WITH PASSWORD 'new_password';
     ```
 
-12. 【可选】远程登录需要修改 postgresql.conf 启用 listen_addresses 配置 (\* 表示所有)
+12. 【可选】远程登录需要修改 postgresql.conf 启用 listen_addresses 配置 ( \* 表示所有)
 
 13. 【可选】创建数据库`/usr/local/pgsql/bin/createdb test`
 
