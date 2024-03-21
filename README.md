@@ -258,6 +258,8 @@ firewall-cmd --state
 systemctl stop firewalld.service
 ```
 
+额外的参考：[https://blog.csdn.net/weixin_43568232/article/details/111408416](https://blog.csdn.net/weixin_43568232/article/details/111408416)
+
 ------------------------------------------------------------------
 
 使用firewalld防火墙限制白名单访问
