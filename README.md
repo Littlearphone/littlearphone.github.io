@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+Linux服务器安全加固：[https://pboyd.io/posts/securing-a-linux-vm/](https://pboyd.io/posts/securing-a-linux-vm/)
+
+------------------------------------------------------------------
+
 基于源码的PG编译：[https://www.postgresql.org/docs/current/installation.html](https://www.postgresql.org/docs/current/installation.html)
 
 下载地址：[https://www.postgresql.org/ftp/source/](https://www.postgresql.org/ftp/source/)
