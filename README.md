@@ -5,7 +5,8 @@
 
 ------------------------------------------------------------------
 
-一个实现Web Component的教程：[https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/](https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/)
+一个实现Web Component的教程：  
+[https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/](https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/)
 
 ------------------------------------------------------------------
 
