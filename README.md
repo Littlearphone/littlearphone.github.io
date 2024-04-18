@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+一个实现Web Component的教程：[https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/](https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/)
+
+------------------------------------------------------------------
+
 IDEA调优参数（仅供参考）：[https://botongcode.com/note/1712153825691](https://botongcode.com/note/1712153825691)
 
 ------------------------------------------------------------------
