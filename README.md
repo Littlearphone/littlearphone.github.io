@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+OPFS: [https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/](https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/)
+
+------------------------------------------------------------------
+
 一个实现Web Component的教程：  
 [https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/](https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/)
 
