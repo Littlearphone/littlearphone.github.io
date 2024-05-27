@@ -5,7 +5,9 @@
 
 ------------------------------------------------------------------
 
-find /etc/ -type f -exec grep -l "test" {} + 
+```
+find /etc/ -type f -exec grep -l "test" {} +
+```
 Linux 上查找文件或内容：[https://blog.csdn.net/qyhua/article/details/135850239](https://blog.csdn.net/qyhua/article/details/135850239)
 
 ------------------------------------------------------------------
