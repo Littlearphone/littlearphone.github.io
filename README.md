@@ -5,6 +5,11 @@
 
 ------------------------------------------------------------------
 
+find /etc/ -type f -exec grep -l "test" {} + 
+Linux 上查找文件或内容：[https://blog.csdn.net/qyhua/article/details/135850239](https://blog.csdn.net/qyhua/article/details/135850239)
+
+------------------------------------------------------------------
+
 OPFS: [https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/](https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/)
 
 ------------------------------------------------------------------
