@@ -8,6 +8,7 @@
 修改 Chrome 作为默认浏览器时的启动参数：
 
 1）从 HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice 下，ProgId 的值里找到键的引用  
+
 2）在 HKEY_CLASSES_ROOT 下面找到 ProgId 对应的键，然后在浏览器程序路径后追加如下参数： 
 ```
 --test-type --ignore-certificate-errors --enable-easy-off-store-extension-install --disable-web-security --user-data-dir=D:\Portable\ChromeCORS
