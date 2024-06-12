@@ -5,6 +5,19 @@
 
 ------------------------------------------------------------------
 
+修改 Chrome 作为默认浏览器时的启动参数：
+
+1）从 HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice 下，ProgId 的值里找到键的引用  
+2）在 HKEY_CLASSES_ROOT 下面找到 ProgId 对应的键，然后在浏览器程序路径后追加如下参数： 
+```
+--test-type --ignore-certificate-errors --enable-easy-off-store-extension-install --disable-web-security --user-data-dir=D:\Portable\ChromeCORS
+```
+需要注意添加空格并修改参数中的用户目录，只有指定了用户目录前面的参数才能生效，否则加了也不一定好使。
+
+> 查询默认浏览器的方法来自 [这里](https://www.cnblogs.com/Arthurian/p/13830381.html)。
+
+------------------------------------------------------------------
+
 ```
 find /etc/ -type f -exec grep -l "test" {} +
 ```
