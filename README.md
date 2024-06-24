@@ -5,6 +5,11 @@
 
 ------------------------------------------------------------------
 
+在浏览器里打开这个地址：chrome://net-internals/#hsts 然后添加特定域名可以将 http 站点强制重定向到 https 下，
+这种方式相比强制启用安全访问设置要较为灵活，不至于导致其它 http 站点被阻拦。
+
+------------------------------------------------------------------
+
 修改 Chrome 作为默认浏览器时的启动参数：
 
 1）从 HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice 下，ProgId 的值里找到键的引用  
