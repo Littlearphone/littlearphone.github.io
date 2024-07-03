@@ -227,6 +227,30 @@ netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.25
 ```
 来源：[https://blog.csdn.net/fnFenNuDManMan/article/details/103288807](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)
 
+
+Linux端口转发
+CentOS 7.0以上使用的是firewall，通过命令行配置实现端口转发。
+
+（1）开启伪装IP
+
+```bash
+firewall-cmd --add-masquerade
+```
+
+（2）配置端口转发，将到达本机的12345端口的访问转发到另一台服务器的22端口。
+
+```bash
+firewall-cmd --add-forward-port=port=12345:proto=tcp:toaddr=192.168.172.131:toport=22
+```
+使用`--permanent`参数可以固化该配置
+
+（3）重新载入，使其失效。
+
+```bash
+firewall-cmd --reload
+```
+来源：[https://blog.csdn.net/HideInTime/article/details/117779380](https://blog.csdn.net/HideInTime/article/details/117779380)
+
 ------------------------------------------------------------------
 
 有意思的前端调试技巧：
