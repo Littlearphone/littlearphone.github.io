@@ -33,6 +33,8 @@ Linux 上查找文件或内容：[https://blog.csdn.net/qyhua/article/details/13
 
 OPFS: [https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/](https://hughfenghen.github.io/posts/2024/03/14/web-storage-and-opfs/)
 
+MDN: [https://developer.mozilla.org/zh-CN/docs/Web/API/File_System_API/Origin_private_file_system](https://developer.mozilla.org/zh-CN/docs/Web/API/File_System_API/Origin_private_file_system)
+
 ------------------------------------------------------------------
 
 一个实现Web Component的教程：  
