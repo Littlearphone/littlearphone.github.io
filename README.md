@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+使用现代CSS设置表格：[https://piccalil.li/blog/styling-tables-the-modern-css-way/](https://piccalil.li/blog/styling-tables-the-modern-css-way/)
+
+------------------------------------------------------------------
+
 设置 Linux 的 Cron 任务：[https://linuxiac.com/how-to-use-cron-and-crontab-on-linux/](https://linuxiac.com/how-to-use-cron-and-crontab-on-linux/)
 
 ------------------------------------------------------------------
