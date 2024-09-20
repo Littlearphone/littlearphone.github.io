@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+高级Shell技术：[https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
+
+------------------------------------------------------------------
+
 使用现代CSS设置表格：[https://piccalil.li/blog/styling-tables-the-modern-css-way/](https://piccalil.li/blog/styling-tables-the-modern-css-way/)
 
 ------------------------------------------------------------------
