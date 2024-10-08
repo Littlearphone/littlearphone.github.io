@@ -5,6 +5,12 @@
 
 ------------------------------------------------------------------
 
+为什么TCP需要三次握手：[https://dbwu.tech/posts/network/why-tcp-does-needs-three-way-handshake](https://dbwu.tech/posts/network/why-tcp-does-needs-three-way-handshake)
+
+提高TCP三次握手效率：[https://dbwu.tech/posts/network/what-is-tcp-fast-open/](https://dbwu.tech/posts/network/what-is-tcp-fast-open/)
+
+------------------------------------------------------------------
+
 高级Shell技术：[https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
 
 ------------------------------------------------------------------
