@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+服务器设置基础知识：[https://becomesovran.com/blog/server-setup-basics.html](https://becomesovran.com/blog/server-setup-basics.html)
+
+------------------------------------------------------------------
+
 为什么TCP需要三次握手：[https://dbwu.tech/posts/network/why-tcp-does-needs-three-way-handshake](https://dbwu.tech/posts/network/why-tcp-does-needs-three-way-handshake)
 
 提高TCP三次握手效率：[https://dbwu.tech/posts/network/what-is-tcp-fast-open/](https://dbwu.tech/posts/network/what-is-tcp-fast-open/)
