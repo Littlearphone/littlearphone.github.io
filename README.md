@@ -2,7 +2,6 @@
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
 </div>
-
 ------------------------------------------------------------------
 
 书签整理指南：[https://nekonull.me/posts/llm_x_bookmark/](https://nekonull.me/posts/llm_x_bookmark/)
@@ -19,6 +18,7 @@
 
 ------------------------------------------------------------------
 
+高效使用Shell：[https://effective-shell.com/](https://effective-shell.com/)
 高级Shell技术：[https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
 
 ------------------------------------------------------------------
