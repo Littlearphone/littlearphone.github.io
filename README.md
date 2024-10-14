@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+书签整理指南：[https://nekonull.me/posts/llm_x_bookmark/](https://nekonull.me/posts/llm_x_bookmark/)
+
+------------------------------------------------------------------
+
 服务器设置基础知识：[https://becomesovran.com/blog/server-setup-basics.html](https://becomesovran.com/blog/server-setup-basics.html)
 
 ------------------------------------------------------------------
