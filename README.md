@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+Linux系统备份：[https://www.loganjin.cn/article/linux-backup/](https://www.loganjin.cn/article/linux-backup/)
+
+------------------------------------------------------------------
+
 书签整理指南：[https://nekonull.me/posts/llm_x_bookmark/](https://nekonull.me/posts/llm_x_bookmark/)
 
 ------------------------------------------------------------------
