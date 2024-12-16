@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+配置Linux启动脚本：[https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
+
+------------------------------------------------------------------
+
 Linux系统备份：[https://www.loganjin.cn/article/linux-backup/](https://www.loganjin.cn/article/linux-backup/)
 
 ------------------------------------------------------------------
