@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+默认样式：[https://www.joshwcomeau.com/css/custom-css-reset/](https://www.joshwcomeau.com/css/custom-css-reset/)
+
+------------------------------------------------------------------
+
 配置Linux启动脚本：[https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
 
 ------------------------------------------------------------------
