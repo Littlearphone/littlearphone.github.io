@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+重置Kafka消费位置：[https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka](https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka)
+
+------------------------------------------------------------------
+
 SQL格式化指南：[https://www.sqlstyle.guide/](https://www.sqlstyle.guide/)
 
 ------------------------------------------------------------------
