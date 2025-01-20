@@ -5,9 +5,9 @@
 
 ------------------------------------------------------------------
 
-重置Kafka消费位置：[https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka](https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka)
-查看Kafka主题LAG：[https://stackoverflow.com/questions/44136463/how-to-get-kafka-lag-using-kafka-0-10](https://stackoverflow.com/questions/44136463/how-to-get-kafka-lag-using-kafka-0-10)
-从头搜索Kafka数据：[https://stackoverflow.com/questions/54652792/kafka-search-text-in-topic](https://stackoverflow.com/questions/54652792/kafka-search-text-in-topic)
+重置Kafka消费位置：[https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka](https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka)  
+查看Kafka主题LAG：[https://stackoverflow.com/questions/44136463/how-to-get-kafka-lag-using-kafka-0-10](https://stackoverflow.com/questions/44136463/how-to-get-kafka-lag-using-kafka-0-10)  
+从头搜索Kafka数据：[https://stackoverflow.com/questions/54652792/kafka-search-text-in-topic](https://stackoverflow.com/questions/54652792/kafka-search-text-in-topic)  
 
 ------------------------------------------------------------------
 
