@@ -7,6 +7,8 @@
 
 会跟随的虫子：[https://codepen.io/MittenedWatchmaker/pen/zLqdaE](https://codepen.io/MittenedWatchmaker/pen/zLqdaE)
 
+一个实现效果：[https://io-oti.github.io/%E3%80%82%F0%9F%98%9C](https://io-oti.github.io/%E3%80%82%F0%9F%98%9C)
+
 ------------------------------------------------------------------
 
 重置Kafka消费位置：[https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka](https://www.kadeck.com/blog/how-to-reset-consumer-offsets-in-apache-kafka)  
