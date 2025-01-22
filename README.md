@@ -15,6 +15,10 @@ SQL格式化指南：[https://www.sqlstyle.guide/](https://www.sqlstyle.guide/)
 
 ------------------------------------------------------------------
 
+暗黑配色：[https://taxodium.ink/setup-blog-color-scheme.html](https://taxodium.ink/setup-blog-color-scheme.html)
+
+------------------------------------------------------------------
+
 网格布局：[https://ishadeed.com/article/css-grid-area/#introduction](https://ishadeed.com/article/css-grid-area/#introduction)
 
 ------------------------------------------------------------------
