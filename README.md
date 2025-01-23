@@ -424,6 +424,10 @@ firewall-cmd --reload
 
 ------------------------------------------------------------------
 
+10个常用的Linux指令：[https://www.trevorlasn.com/blog/10-essential-terminal-commands-every-developer-should-know](https://www.trevorlasn.com/blog/10-essential-terminal-commands-every-developer-should-know)
+
+------------------------------------------------------------------
+
 使用如下指令在展开压缩包时将指定的多个内容释放到搜索出的不同路径下
 ```
 yes | find /home -name 'video-???' -type d | xargs -L 1 -t -I {} unzip xxx.zip "video/*" -d {}/bin/
