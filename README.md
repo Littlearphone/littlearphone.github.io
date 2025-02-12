@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+DeepSeek R1 本地部署：[https://www.cnblogs.com/shanren/p/18702244](https://www.cnblogs.com/shanren/p/18702244)
+
+------------------------------------------------------------------
+
 会跟随的虫子：[https://codepen.io/MittenedWatchmaker/pen/zLqdaE](https://codepen.io/MittenedWatchmaker/pen/zLqdaE)
 
 一个实现效果：[https://io-oti.github.io/%E3%80%82%F0%9F%98%9C](https://io-oti.github.io/%E3%80%82%F0%9F%98%9C)
