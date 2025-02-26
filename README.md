@@ -130,6 +130,8 @@ MDN: [https://developer.mozilla.org/zh-CN/docs/Web/API/File_System_API/Origin_pr
 
 ------------------------------------------------------------------
 
+内存泄漏排查经验：[https://www.cnblogs.com/xiezhr/p/18737457](https://www.cnblogs.com/xiezhr/p/18737457)
+
 IDEA调优参数（仅供参考）：[https://botongcode.com/note/1712153825691](https://botongcode.com/note/1712153825691)
 
 ------------------------------------------------------------------
