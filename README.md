@@ -21,7 +21,11 @@
 
 ------------------------------------------------------------------
 
-DeepSeek R1 本地部署：[https://www.cnblogs.com/shanren/p/18702244](https://www.cnblogs.com/shanren/p/18702244)
+DeepSeek R1 本地部署：
+
+[https://www.cnblogs.com/shanren/p/18702244](https://www.cnblogs.com/shanren/p/18702244)
+
+[https://blog.lovefc.cn/archives/start.html](https://blog.lovefc.cn/archives/start.html)
 
 ------------------------------------------------------------------
 
