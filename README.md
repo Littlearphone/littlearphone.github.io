@@ -535,6 +535,8 @@ convert -density 256x256 -background transparent favicon.svg -define icon:auto-r
 
 ------------------------------------------------------------------
 
+### Chrome Mini 版本安装包下载
+
 找到个地方直接下载 mini 版本的安装包，就是全加载比较难顶：[https://chromium.cypress.io/](https://chromium.cypress.io/)
 
 下面问答采纳的那条回复里的检索页面已经下线，但是其它回答里的 <a href="https://vikyd.github.io/download-chromium-history-version/" target="_blank">地址</a> 倒是可以直接用。
@@ -542,6 +544,8 @@ convert -density 256x256 -background transparent favicon.svg -define icon:auto-r
 获取chrome mini版本安装包的方法参考 <a href="https://stackoverflow.com/questions/54927496/how-to-download-older-versions-of-chrome-from-a-google-official-site" target="_blank">此文</a>
 
 ------------------------------------------------------------------
+
+### Java 远程调试
 
 在服务器上的服务启动参数追加
 ```
