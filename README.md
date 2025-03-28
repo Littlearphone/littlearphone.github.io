@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+视频流在Web上的工作原理：[https://medium.com/canal-tech/how-video-streaming-works-on-the-web-an-introduction-7919739f7e1](https://medium.com/canal-tech/how-video-streaming-works-on-the-web-an-introduction-7919739f7e1)
+
+------------------------------------------------------------------
+
 Wireshark不显示网卡要怎么处理：[https://metaso.cn/search/8592333988799885312?q=wireshark不显示网卡要怎么处理](https://metaso.cn/search/8592333988799885312?q=wireshark不显示网卡要怎么处理)
 
 ------------------------------------------------------------------
