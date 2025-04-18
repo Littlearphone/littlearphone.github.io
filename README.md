@@ -13,6 +13,8 @@ Linux存储占用排查：
 
 使用 `lsof +L1 | numfmt --field=7 --to=iec | head` 可以查看被删了但是未释放的文件（field可能需要改成具体的列数）
 
+使用 `find /opt -size +100M -ls` 查找特定路径下大于指定大小的文件
+
 ------------------------------------------------------------------
 
 tcpdump 参数列表：[https://www.tcpdump.org/manpages/tcpdump.1.html](https://www.tcpdump.org/manpages/tcpdump.1.html)
