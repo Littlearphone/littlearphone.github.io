@@ -5,6 +5,14 @@
 
 ------------------------------------------------------------------
 
+Linux存储占用排查：
+
+[https://superuser.com/questions/276487/how-to-find-the-largest-directories-or-largest-files](https://superuser.com/questions/276487/how-to-find-the-largest-directories-or-largest-files)
+
+[https://metaso.cn/search/8601393120512143360?q=Linux挂在的分区显示空间耗尽，如何查询耗尽空间的文件或目录](https://metaso.cn/search/8601393120512143360?q=Linux挂在的分区显示空间耗尽，如何查询耗尽空间的文件或目录)
+
+------------------------------------------------------------------
+
 tcpdump 参数列表：[https://www.tcpdump.org/manpages/tcpdump.1.html](https://www.tcpdump.org/manpages/tcpdump.1.html)
 
 ------------------------------------------------------------------
