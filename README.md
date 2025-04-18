@@ -11,6 +11,8 @@ Linux存储占用排查：
 
 [https://metaso.cn/search/8601393120512143360?q=Linux挂在的分区显示空间耗尽，如何查询耗尽空间的文件或目录](https://metaso.cn/search/8601393120512143360?q=Linux挂在的分区显示空间耗尽，如何查询耗尽空间的文件或目录)
 
+使用 `lsof +L1 | numfmt --field=7 --to=iec | head` 可以查看被删了但是未释放的文件（field可能需要改成具体的列树）
+
 ------------------------------------------------------------------
 
 tcpdump 参数列表：[https://www.tcpdump.org/manpages/tcpdump.1.html](https://www.tcpdump.org/manpages/tcpdump.1.html)
