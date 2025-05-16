@@ -5,6 +5,11 @@
 
 ------------------------------------------------------------------
 
+
+各数据库参数数量限制：[https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292](https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292)
+
+------------------------------------------------------------------
+
 Linux存储占用排查：
 
 [https://superuser.com/questions/276487/how-to-find-the-largest-directories-or-largest-files](https://superuser.com/questions/276487/how-to-find-the-largest-directories-or-largest-files)
