@@ -5,8 +5,15 @@
 
 ------------------------------------------------------------------
 
+Vue Scope样式变化：
 
-各数据库参数数量限制：[https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292](https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292)
+[https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md#detailed-design](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md#detailed-design)
+
+------------------------------------------------------------------
+
+各数据库参数数量限制：
+
+[https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292](https://stackoverflow.com/questions/6581573/what-are-the-max-number-of-allowable-parameters-per-database-provider-type/54149292#54149292)
 
 ------------------------------------------------------------------
 
