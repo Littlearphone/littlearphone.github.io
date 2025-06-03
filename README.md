@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+ZIP炸弹：[https://idiallo.com/blog/zipbomb-protection](https://idiallo.com/blog/zipbomb-protection)
+
+------------------------------------------------------------------
+
 Vue Scope样式变化：
 
 [https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md#detailed-design](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md#detailed-design)
