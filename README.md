@@ -7,6 +7,8 @@
 
 限制ES内存使用量：[https://www.elastic.co/guide/en/elasticsearch/guide/current/_limiting_memory_usage.html](https://www.elastic.co/guide/en/elasticsearch/guide/current/_limiting_memory_usage.html)
 
+可能会有用：[https://stackoverflow.com/questions/30811046/fielddata-data-is-too-large](https://stackoverflow.com/questions/30811046/fielddata-data-is-too-large)
+
 ------------------------------------------------------------------
 
 MySQL分表类型：[https://dev.mysql.com/doc/mysql-partitioning-excerpt/8.0/en/partitioning-types.html](https://dev.mysql.com/doc/mysql-partitioning-excerpt/8.0/en/partitioning-types.html)
