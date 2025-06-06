@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+MySQL分表类型：[https://dev.mysql.com/doc/mysql-partitioning-excerpt/8.0/en/partitioning-types.html](https://dev.mysql.com/doc/mysql-partitioning-excerpt/8.0/en/partitioning-types.html)
+
+------------------------------------------------------------------
+
 ZIP炸弹：[https://idiallo.com/blog/zipbomb-protection](https://idiallo.com/blog/zipbomb-protection)
 
 ------------------------------------------------------------------
