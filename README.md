@@ -5,6 +5,12 @@
 
 ------------------------------------------------------------------
 
+SSH隧道：[https://www.horosama.com/archives/327](https://www.horosama.com/archives/327)
+
+RDP over SSH：[https://ngx.hk/2017/04/25/配置使用rdp-over-ssh提高远程桌面安全性.html](https://ngx.hk/2017/04/25/配置使用rdp-over-ssh提高远程桌面安全性.html)
+
+------------------------------------------------------------------
+
 限制ES内存使用量：[https://www.elastic.co/guide/en/elasticsearch/guide/current/_limiting_memory_usage.html](https://www.elastic.co/guide/en/elasticsearch/guide/current/_limiting_memory_usage.html)
 
 可能会有用：[https://stackoverflow.com/questions/30811046/fielddata-data-is-too-large](https://stackoverflow.com/questions/30811046/fielddata-data-is-too-large)
