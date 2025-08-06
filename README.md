@@ -554,6 +554,14 @@ service network restart
 rpm -ivh net-tools-2.0-0.52.20160912git.el8.x86_64.rpm
 ```
 
+- 挂载的硬盘使用lsblk可以查看到，此时应该是disk类型，fdisk -l指令也可以查看
+- 使用fdisk /dev/vdb可以进入分区模式（vdb是盘名），单盘全分的话输入n，然后一路默认
+- 创建结束后输入w保存分配结果并退出分配模式，默认创建的为第一个分区，后缀为1，此时就可以挂载了
+```
+mkfs.ext4 /dev/vdb1
+mount /dev/vdb1 /opt
+```
+
 ------------------------------------------------------------------
 
 使用`systemctl list-units`查到的 not-found 状态服务可以使用`systemctl reset-failed`清理
