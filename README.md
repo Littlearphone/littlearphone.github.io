@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+在浏览器上使用TTS进行朗读：[https://jsdev.space/tts-sentence-reader/](https://jsdev.space/tts-sentence-reader/)
+
+------------------------------------------------------------------
+
 如何集成谷歌登录：[https://developers.google.com/identity/sign-in/web/sign-in?hl=zh-cn](https://developers.google.com/identity/sign-in/web/sign-in?hl=zh-cn)
 
 ------------------------------------------------------------------
