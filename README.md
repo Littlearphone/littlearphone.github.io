@@ -372,6 +372,8 @@ windows系统文件扫描与恢复 (不一定有效)：[https://answers.microsof
 
 SVG学习：[https://svg-tutorial.com/](https://svg-tutorial.com/)
 
+SVG学习2：[https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/](https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/)
+
 ------------------------------------------------------------------
 
 intellij开源的反编译库：
