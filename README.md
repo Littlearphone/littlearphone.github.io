@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+Linux 带宽测试：[https://www.baeldung.com/linux/network-speed-testing](https://www.baeldung.com/linux/network-speed-testing)
+
+------------------------------------------------------------------
+
 HTTP 状态码解读：[https://evertpot.com/http/](https://evertpot.com/http/)
 
 ------------------------------------------------------------------
