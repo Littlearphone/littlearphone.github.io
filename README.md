@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+Nginx负载均衡配置：[https://docshome.gitbook.io/nginx-docs/readme/shi-yong-nginx-zuo-wei-http-fu-zai-jun-heng-qi](https://docshome.gitbook.io/nginx-docs/readme/shi-yong-nginx-zuo-wei-http-fu-zai-jun-heng-qi)
+
+------------------------------------------------------------------
+
 Linux 带宽测试：[https://www.baeldung.com/linux/network-speed-testing](https://www.baeldung.com/linux/network-speed-testing)
 
 ------------------------------------------------------------------
