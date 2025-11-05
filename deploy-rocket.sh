@@ -5,9 +5,9 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 JAVA_HOME='/usr/local/java/jdk-21'
-# 这两个数组要一样多
-ROCKET_CLUSTER_ID=("n0" "n1" "n2")
-ROCKET_CLUSTER_IP=("localhost1:9878" "localhost2:9878" "localhost3:9878")
+#这两个数组要一样多
+#ROCKET_CLUSTER_ID=("n0" "n1" "n2")
+#ROCKET_CLUSTER_IP=("localhost1:9878" "localhost2:9878" "localhost3:9878")
 ROCKET_CLUSTER=(["n0"]="localhost1:9878" ["n1"]="localhost2:9878" ["n2"]="localhost3:9878")
 
 NAMESVR_SERVICE_NAME=rocketmq-namesvr.service
@@ -105,7 +105,7 @@ function install_namesvr() {
   
   cat > ${NAMESVR_SERVICE_NAME} << EOF
 [Unit]
-Description=RocketMQ Configuration Service
+Description=RocketMQ Discovery Service
 After=network.target
 
 [Service]
@@ -113,8 +113,8 @@ User=rocketmq
 Group=module
 Type=forking
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=sh ${ROCKET_HOME}/bin/startup.sh
-ExecStop=sh ${ROCKET_HOME}/bin/shutdown.sh
+ExecStart=nohup sh ${ROCKET_HOME}/bin/mqnamesrv &
+ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown namesrv
 Restart=always
 
 [Install]
@@ -147,7 +147,7 @@ function install_broker() {
   
   cat > ${BROKER_SERVICE_NAME} << EOF
 [Unit]
-Description=RocketMQ Configuration Service
+Description=RocketMQ Broker Service
 After=network.target
 
 [Service]
@@ -155,8 +155,8 @@ User=rocketmq
 Group=module
 Type=forking
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=sh ${ROCKET_HOME}/bin/startup.sh
-ExecStop=sh ${ROCKET_HOME}/bin/shutdown.sh
+ExecStart=nohup sh ${ROCKET_HOME}/bin/mqbroker &
+ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown broker
 Restart=always
 
 [Install]
@@ -189,7 +189,7 @@ function install_proxy() {
   
   cat > ${PROXY_SERVICE_NAME} << EOF
 [Unit]
-Description=RocketMQ Configuration Service
+Description=RocketMQ Proxy Service
 After=network.target
 
 [Service]
@@ -197,8 +197,8 @@ User=rocketmq
 Group=module
 Type=forking
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=sh ${ROCKET_HOME}/bin/startup.sh
-ExecStop=sh ${ROCKET_HOME}/bin/shutdown.sh
+ExecStart=nohup sh ${ROCKET_HOME}/bin/mqproxy &
+ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown proxy
 Restart=always
 
 [Install]
