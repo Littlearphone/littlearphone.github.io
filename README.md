@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+邮箱服务器查询：[https://www.email4.fun/](https://www.email4.fun/)
+
+------------------------------------------------------------------
+
 Nginx负载均衡配置：[https://docshome.gitbook.io/nginx-docs/readme/shi-yong-nginx-zuo-wei-http-fu-zai-jun-heng-qi](https://docshome.gitbook.io/nginx-docs/readme/shi-yong-nginx-zuo-wei-http-fu-zai-jun-heng-qi)
 
 ------------------------------------------------------------------
