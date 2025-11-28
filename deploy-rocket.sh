@@ -5,6 +5,23 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 JAVA_HOME='/usr/local/java/jdk-21'
+
+
+#脚本用法（只支持三台以上服务器单节点部署，不支持同服务器多实例）：
+#1.修改ROCKET_CLUSTER_IP中的HOST参数，如果不止三个节点，那ROCKET_CLUSTER_ID也要扩增
+#2.分别在每台服务器上执行下列指令
+#  服务器1：
+#  sh deploy-rocket.sh namesrv n0
+#  sh deploy-rocket.sh broker n0 --enable-proxy
+#  服务器2：
+#  sh deploy-rocket.sh namesrv n1
+#  sh deploy-rocket.sh broker n1 --enable-proxy
+#  服务器3：
+#  sh deploy-rocket.sh namesrv n2
+#  sh deploy-rocket.sh broker n2 --enable-proxy
+#如果有更多服务器则重复上面的指令，修改id为nx
+
+
 # 这两个数组要一样多
 NAMESRV_PORT=9876
 CONTROLLER_PORT=9878
