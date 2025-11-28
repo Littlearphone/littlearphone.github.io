@@ -5,12 +5,16 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 JAVA_HOME='/usr/local/java/jdk-21'
-#这两个数组要一样多
-#ROCKET_CLUSTER_ID=("n0" "n1" "n2")
-#ROCKET_CLUSTER_IP=("localhost1:9878" "localhost2:9878" "localhost3:9878")
-ROCKET_CLUSTER=(["n0"]="localhost1:9878" ["n1"]="localhost2:9878" ["n2"]="localhost3:9878")
+# 这两个数组要一样多
+NAMESRV_PORT=9876
+CONTROLLER_PORT=9878
+PROXY_GRPC_PORT=9880
+PROXY_REMOTE_PORT=9882
+ROCKET_CLUSTER_ID=("n0" "n1" "n2")
+ROCKET_CLUSTER_IP=("host1" "host2" "host3")
+#ROCKET_CLUSTER=(["n0"]="host1" ["n1"]="host2" ["n2"]="host3")
 
-NAMESVR_SERVICE_NAME=rocketmq-namesvr.service
+NAMESVR_SERVICE_NAME=rocketmq-namesrv.service
 BROKER_SERVICE_NAME=rocketmq-broker.service
 PROXY_SERVICE_NAME=rocketmq-proxy.service
 ROCKET_HOME=/usr/local/rocketmq
@@ -86,17 +90,36 @@ chown rocketmq:module .
 chown -fR rocketmq:module *
 echo -e "${GREEN}OK${NC} 创建 rocketmq 用户成功"
 
-function install_namesvr() {
-  if [[ ! ${#ROCKET_CLUSTER[@]} -eq 0 ]]; then
-    echo '# ip:port' > conf/namesvr-$1.conf
-  #  OLD_IFS=$IFS
-  #  IFS=";"
-  #  concatenated_string="${my_array[*]}"
-  #  IFS=$OLD_IFS
-    for i in "${!ROCKET_CLUSTER[@]}"
+function open_modules() {
+  sed -i -E '/^"\$JAVA"/i\JAVA_OPT="${JAVA_OPT} --add-opens=java.base/java.lang=ALL-UNNAMED"' bin/runserver.sh
+  sed -i -E '/^"\$JAVA"/i\JAVA_OPT="${JAVA_OPT} --add-opens=java.base/java.util=ALL-UNNAMED"' bin/runserver.sh
+  sed -i -E '/^"\$JAVA"/i\JAVA_OPT="${JAVA_OPT} --add-opens=java.base/sun.nio.ch=ALL-UNNAMED"' bin/runserver.sh
+}
+
+if [ "$1" = 'open_modules' ]; then
+  open_modules
+  exit 0
+fi 
+
+function install_namesrv() {
+  CONFIG_NAME=namesrv.conf
+  if [[ ! ${#ROCKET_CLUSTER_IP[@]} -eq 0 ]]; then
+    CONFIG_NAME=namesrv-$1.conf
+    address=()
+    for i in "${!ROCKET_CLUSTER_IP[@]}"
     do
-      echo -n "$i-${ROCKET_CLUSTER[$i]}" >> conf/namesvr-$1.conf
+      address+=("${ROCKET_CLUSTER_ID[$i]}-${ROCKET_CLUSTER_IP[$i]}:${CONTROLLER_PORT}")
     done
+    echo '#Namesrv config' > conf/${CONFIG_NAME}
+    echo 'listenPort = '${NAMESRV_PORT} >> conf/${CONFIG_NAME}
+    echo 'enableControllerInNamesrv = true' >> conf/${CONFIG_NAME}
+    echo '#controller config' >> conf/${CONFIG_NAME}
+    echo 'controllerDLegerGroup = wallet-group' >> conf/${CONFIG_NAME}
+    OLD_IFS=$IFS
+    IFS=";"
+    echo "controllerDLegerPeers = ${address[*]}" >> conf/${CONFIG_NAME}
+    IFS=$OLD_IFS
+    echo "controllerDLegerSelfId = $1" >> conf/${CONFIG_NAME}
     echo -e "${GREEN}OK${NC} RocketMQ 集群配置创建成功"
   fi
   
@@ -111,9 +134,10 @@ After=network.target
 [Service]
 User=rocketmq
 Group=module
-Type=forking
+Type=simple
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=nohup sh ${ROCKET_HOME}/bin/mqnamesrv &
+Environment=PATH=$PATH:${JAVA_HOME}/bin
+ExecStart=sh ${ROCKET_HOME}/bin/mqnamesrv -c ${ROCKET_HOME}/conf/${CONFIG_NAME}
 ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown namesrv
 Restart=always
 
@@ -136,12 +160,53 @@ EOF
   echo -e "${GREEN}OK${NC} ${NAMESVR_SERVICE_NAME} 服务启动成功"
 }
 
-if [ "$1" = 'namesvr' ]; then
-  install_namesvr $2
+if [ "$1" = 'namesrv' ]; then
+  install_namesrv $2
   exit 0
 fi 
 
 function install_broker() {
+  CONFIG_NAME=broker.conf
+  OPTIONS=''
+  if [ "$2" != "" ]; then
+    OPTIONS="$2"
+  fi 
+  if [[ ! ${#ROCKET_CLUSTER_IP[@]} -eq 0 ]]; then
+    CONFIG_NAME=broker-$1.conf
+    namesrvAddr=()
+    controllerAddr=()
+    for i in "${!ROCKET_CLUSTER_IP[@]}"
+    do
+      namesrvAddr+=("${ROCKET_CLUSTER_IP[$i]}:${NAMESRV_PORT}")
+      controllerAddr+=("${ROCKET_CLUSTER_IP[$i]}:${CONTROLLER_PORT}")
+    done
+    OLD_IFS=$IFS
+    IFS=";"
+    if [ "$OPTIONS" == "--enable-proxy" ]; then
+      cat > conf/rmq-proxy.json << EOF
+{
+  "rocketMQClusterName": "DefaultCluster",
+  "remotingListenPort": ${PROXY_REMOTE_PORT},
+  "grpcServerPort": ${PROXY_GRPC_PORT},
+  "namesrvAddr": "${namesrvAddr[*]}"
+}
+EOF
+	fi 
+    #https://rocketmq-learning.com/course/deploy/rocketmq_learning-gvr7dx_awbbpb_bmpnil7eq36uy5fn
+    cat > conf/${CONFIG_NAME} << EOF
+brokerClusterName = DefaultCluster
+brokerName = broker-$1
+brokerId = -1
+brokerRole = SLAVE
+deleteWhen = 04
+fileReservedTime = 48
+enableControllerMode = true
+controllerAddr = ${controllerAddr[*]}
+namesrvAddr = ${namesrvAddr[*]}
+EOF
+    IFS=$OLD_IFS
+    echo -e "${GREEN}OK${NC} RocketMQ 集群配置创建成功"
+  fi
   #检查服务脚本是否已安装
   if [[ ! -f ${SERVICE_PATH}/${BROKER_SERVICE_NAME} ]]; then
   
@@ -153,9 +218,10 @@ After=network.target
 [Service]
 User=rocketmq
 Group=module
-Type=forking
+Type=simple
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=nohup sh ${ROCKET_HOME}/bin/mqbroker &
+Environment=PATH=$PATH:${JAVA_HOME}/bin
+ExecStart=sh ${ROCKET_HOME}/bin/mqbroker -c ${ROCKET_HOME}/conf/${CONFIG_NAME} ${OPTIONS}
 ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown broker
 Restart=always
 
@@ -179,7 +245,8 @@ EOF
 }
 
 if [ "$1" = 'broker' ]; then
-  install_broker $2
+  #$3主要是给--enable-proxy留的
+  install_broker $2 $3
   exit 0
 fi 
 
@@ -187,7 +254,14 @@ function install_proxy() {
   #检查服务脚本是否已安装
   if [[ ! -f ${SERVICE_PATH}/${PROXY_SERVICE_NAME} ]]; then
   
-  cat > ${PROXY_SERVICE_NAME} << EOF
+    namesrvAddr=()
+    for i in "${!ROCKET_CLUSTER_IP[@]}"
+    do
+      namesrvAddr+=("${ROCKET_CLUSTER_IP[$i]}:${NAMESRV_PORT}")
+    done
+    OLD_IFS=$IFS
+    IFS=";"
+    cat > ${PROXY_SERVICE_NAME} << EOF
 [Unit]
 Description=RocketMQ Proxy Service
 After=network.target
@@ -195,15 +269,17 @@ After=network.target
 [Service]
 User=rocketmq
 Group=module
-Type=forking
+Type=simple
 Environment=JAVA_HOME=${JAVA_HOME}
-ExecStart=nohup sh ${ROCKET_HOME}/bin/mqproxy &
+Environment=PATH=$PATH:${JAVA_HOME}/bin
+ExecStart=sh ${ROCKET_HOME}/bin/mqproxy -n ${namesrvAddr[*]}
 ExecStop=sh ${ROCKET_HOME}/bin/mqshutdown proxy
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 EOF
+    IFS=$OLD_IFS
     mv ${PROXY_SERVICE_NAME} /usr/lib/systemd/system/
   
     systemctl daemon-reload
