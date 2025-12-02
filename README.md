@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+Nginx证书自动化：[https://sconts.com/post/nginx-native-acme-support/](https://sconts.com/post/nginx-native-acme-support/)
+
+------------------------------------------------------------------
+
 邮箱服务器查询：[https://www.email4.fun/](https://www.email4.fun/)
 
 ------------------------------------------------------------------
