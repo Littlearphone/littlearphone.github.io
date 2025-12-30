@@ -5,6 +5,12 @@
 
 ------------------------------------------------------------------
 
+一些前端的原生能力：[https://juejin.cn/post/7545294766975615015](https://juejin.cn/post/7545294766975615015)
+
+[评论区整理的全图](https://p26-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/8f7d6ed027784ceca6ee0174b2b39ea8~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgTXLkuLbnlq_lrZE=:q75.awebp?rk3s=436ef1ef&x-expires=1767143591&x-signature=37HjLJiA1KWFVYxxMHJGip4W7Cs%3D)
+
+------------------------------------------------------------------
+
 Nginx证书自动化：[https://sconts.com/post/nginx-native-acme-support/](https://sconts.com/post/nginx-native-acme-support/)
 
 ------------------------------------------------------------------
