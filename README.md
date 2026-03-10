@@ -5,6 +5,10 @@
 
 ------------------------------------------------------------------
 
+都6202年了，全用PG就行了：[https://www.tigerdata.com/blog/its-2026-just-use-postgres](https://www.tigerdata.com/blog/its-2026-just-use-postgres)
+
+------------------------------------------------------------------
+
 一种中小规模访问量下用PG替代Redis的方案：[https://dev.to/polliog/i-replaced-redis-with-postgresql-and-its-faster-4942](https://dev.to/polliog/i-replaced-redis-with-postgresql-and-its-faster-4942)
 
 ------------------------------------------------------------------
