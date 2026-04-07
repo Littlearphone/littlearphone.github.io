@@ -586,3 +586,50 @@ TimescaleDB 的压缩对 `JSONB` 非常友好。
 3. **查询策略**：99% 的时序分析只查主表。只有当用户点击“查看详情”时，再通过 `time` 和 `id` 去 JSONB 表中提取单行数据。
 
 **总结：** 在亿级场景下，**JSONB + TimescaleDB 压缩 + 局部索引** 是兼顾灵活性与性能的最佳组合。
+
+# X. 如何基于源码在 Linux 上部署 PG
+
+官方安装文档地址：https://www.postgresql.org/docs/current/installation.html
+
+源码包下载地址：https://www.postgresql.org/ftp/source/
+
+1. 先从https://www.postgresql.org/ftp/source/下载所需版本的源码（bz2的包）
+
+2. 使用`tar xf postgresql-<version>.tar.bz2`解压源码包并进入其中
+
+3. 使用`./configure`检查编译环境，如果有不满足的会提升，可以试着根据提示加参数屏蔽某些检查
+
+4. 直接执行`make`开始编译，正常来说执行完就编译完了，如果失败了就根据错误信息进行搜索
+
+5. 使用`su`切换到 root 权限，再执行`make install`开始 PG 的安装
+
+6. 添加 postgres 用户：`adduser postgres`并设置密码
+
+7. 为 PG 创建数据目录，可以建在 PG 的安装目录（`/usr/local/pgsql`）也可以另外找目录
+
+   ```sh
+   mkdir -p /usr/local/pgsql/data
+   或
+   mkdir -p /opt/pg-data
+   ```
+
+8. 为数据目录设置所属`chown postgres /opt/pg-data`
+
+9. 切换到 postgres 用户`su - postgres`
+
+10. 初始化数据目录`/usr/local/pgsql/bin/initdb -D /opt/pg-data`
+
+11. 启动 PG 服务`/usr/local/pgsql/bin/pg_ctl -D /opt/pg-data -l logfile start`
+
+12. 【可选】超管密码可能需要在 pg_hba.conf 里启用受信地址后登录上去指定
+
+    ```sh
+    /usr/local/pgsql/bin/psql postgres
+    ALTER USER user_name WITH PASSWORD 'new_password';
+    ```
+
+13. 【可选】远程登录需要修改 postgresql.conf 启用 listen_addresses 配置 ( * 表示所有)
+
+14. 【可选】创建数据库`/usr/local/pgsql/bin/createdb test`
+
+15. 【可选】连接数据库`/usr/local/pgsql/bin/psql test`
