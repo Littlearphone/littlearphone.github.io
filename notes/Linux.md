@@ -337,3 +337,41 @@ UUID=你的UUID字符串  /mnt/data  ext4  defaults  0  2
 - **挂载点权限**：确保挂载点目录（如 `/mnt/data`）已经提前创建好。
 
 你目前的分区是 **Windows NTFS** 格式还是 **Linux ext4/xfs** 格式？如果是移动硬盘或双系统分区，挂载参数可能需要额外调整。
+
+## 2. Redhat 最小化安装的网络配置
+
+最小化安装Redhat时，可能会没有网络，需要通过主机终端先启用网络服务。
+
+- 在安装网络服务前，先去修改网络脚本文件里的ONBOOT配置项为yes，让网卡可以随服务启用。
+- 网卡配置参考路径为`/etc/sysconfig/network-scripts/ifcfg-enp1s0`，多网卡可能有多个文件。
+- 网卡配置文件后半段为网卡名称，文件里的配置名需要和这部分名称保持一致，启用网卡时注意区分名称。
+- 默认情况下配置文件里应该是dhcp模式，需要指定IP的话参考 [此文](https://blog.csdn.net/hjxloveqsx/article/details/120529147)。
+- 修改完网卡配置还需要在`/etc/sysconfig/network`里加一行`NETWORKING=yes`后保存退出。
+- 接着去挂载安装镜像，`lsblk`可以看到**sr**为前缀的设备信息，选择正确的用`mount /dev/srx /mnt`挂载。
+- 挂载后会显示只读，此时进入`/mnt/BaseOS/Packages`找网络服务包使用 rpm 指令进行安装。
+- 不同版本的系统镜像带的包版本可能有所不同，根据实际的安装就行，这里的包肯定是最合适的。
+
+```sh
+rpm -ivh ipcalc-0.2.4-4.el8.x86_64.rpm bc-1.07.1-5.el8.x86_64.rpm network-scripts-10.00.18-1.el8.x86_64.rpm
+```
+
+安装完网络服务包就可以使用网络服务了，以防万一可以重启下网络服务，促使网卡启用
+
+```sh
+service network restart
+```
+
+默认应该也没有ifconfig指令，需要安装net-tools包才能使用，此外unzip也能在镜像里面找到
+
+```sh
+rpm -ivh net-tools-2.0-0.52.20160912git.el8.x86_64.rpm
+```
+
+- 挂载的硬盘使用lsblk可以查看到，此时应该是disk类型，fdisk -l指令也可以查看
+- 使用fdisk /dev/vdb可以进入分区模式（vdb是盘名），单盘全分的话输入n，然后一路默认
+- 创建结束后输入w保存分配结果并退出分配模式，默认创建的为第一个分区，后缀为1，此时就可以挂载了
+
+```sh
+mkfs.ext4 /dev/vdb1
+mount /dev/vdb1 /opt
+```
