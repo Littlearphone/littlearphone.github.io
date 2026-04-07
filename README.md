@@ -246,53 +246,6 @@ Linux服务器安全加固：[https://pboyd.io/posts/securing-a-linux-vm/](https
 
 ------------------------------------------------------------------
 
-基于源码的PG编译：[https://www.postgresql.org/docs/current/installation.html](https://www.postgresql.org/docs/current/installation.html)
-
-下载地址：[https://www.postgresql.org/ftp/source/](https://www.postgresql.org/ftp/source/)
-
-0. 先从[https://www.postgresql.org/ftp/source/](https://www.postgresql.org/ftp/source/)下载所需版本的源码（bz2的包）
-
-1. 使用`tar xf postgresql-<version>.tar.bz2`解压源码包并进入其中
-
-2. 使用`./configure`检查编译环境，如果有不满足的会提升，可以试着根据提示加参数屏蔽某些检查
-
-3. 直接执行`make`开始编译，正常来说执行完就编译完了，如果失败了就根据错误信息进行搜索
-
-4. 使用`su`切换到 root 权限，再执行`make install`开始 PG 的安装
-
-5. 添加 postgres 用户：`adduser postgres`并设置密码
-
-6. 为 PG 创建数据目录，可以建在 PG 的安装目录（`/usr/local/pgsql`）也可以另外找目录
-
-    ```
-    mkdir -p /usr/local/pgsql/data
-    或
-    mkdir -p /opt/pg-data
-    ```
-
-7. 为数据目录设置所属`chown postgres /opt/pg-data`
-
-8. 切换到 postgres 用户`su - postgres`
-
-9. 初始化数据目录`/usr/local/pgsql/bin/initdb -D /opt/pg-data`
-
-10. 启动 PG 服务`/usr/local/pgsql/bin/pg_ctl -D /opt/pg-data -l logfile start`
-
-11. 【可选】超管密码可能需要在 pg_hba.conf 里启用受信地址后登录上去指定
-
-    ```
-    /usr/local/pgsql/bin/psql postgres
-    ALTER USER user_name WITH PASSWORD 'new_password';
-    ```
-
-12. 【可选】远程登录需要修改 postgresql.conf 启用 listen_addresses 配置 ( \* 表示所有)
-
-13. 【可选】创建数据库`/usr/local/pgsql/bin/createdb test`
-
-14. 【可选】连接数据库`/usr/local/pgsql/bin/psql test`
-
-------------------------------------------------------------------
-
 删除或恢复分区上方的文件夹
 
 将下面的内容保存为Remove-Explorer-Folders-(64-bit Windows).reg文件：
