@@ -2,7 +2,7 @@
 
 ## 1. systemctl 的用法
 
-`systemctl` 是 Linux 系统中用于管理 **systemd**（系统和服务管理器）的核心命令。它几乎取代了旧版本的 `service` 和 `chkconfig`，是目前**事实上**的服务程序管理标准。
+`systemctl` 是 Linux 系统中用于管理 **systemd**（系统和服务管理器）的核心命令。它几乎取代了旧版本的 `service` 和 `chkconfig`，是目前**事实上**的服务管理标准程序。
 
 以下是按照使用场景分类的常用指令指南：
 
