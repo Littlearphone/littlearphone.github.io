@@ -775,8 +775,8 @@ COPY (SELECT id, name FROM users WHERE age > 18) TO '/tmp/adults.csv' WITH (FORM
 如果非要用子查询，那么尽量使用全列查询方式，如果有分块的需求，也应该在子查询中进行分割：
 
 ```sql
-COPY (SELECT * FROM table LIMIT 1000000 OFFSET 0) TO 'part1.csv'
-COPY (SELECT * FROM table LIMIT 1000000 OFFSET 1000000) TO 'part2.csv'
+COPY (SELECT * FROM table LIMIT 1000000 OFFSET 0) TO 'part1.csv' WITH (FORMAT CSV);
+COPY (SELECT * FROM table LIMIT 1000000 OFFSET 1000000) TO 'part2.csv' WITH (FORMAT CSV);
 ```
 
 ------
