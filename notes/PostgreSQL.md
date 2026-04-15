@@ -4,21 +4,42 @@
 
 ## 1.1. 核心方案：PostgreSQL 咨询锁 (Advisory Locks)
 
-PG 咨询锁允许你通过一个 64 位整数（或两个 32 位整数）作为锁的标识符。它不需要像 Redis 那样手动管理过期时间（TTL），因为它可以与数据库会话（Session）绑定。
+PG 咨询锁允许你通过一个 64 位整数（bigint）或两个 32 位整数（int）作为锁的标识符。它不需要像 Redis 那样手动管理过期时间（TTL），因为它可以与数据库会话（Session）绑定。
 
-A. 会话级锁 (Session-level)
+**A. 会话级锁 (Session-level)**
 
 锁与当前的数据库连接绑定。如果连接断开（如应用崩溃），PG 会**自动释放**该锁，天然避免了 Redis 中常见的死锁问题。
 
 - **加锁**：`SELECT pg_advisory_lock(锁ID);`（阻塞直到获取）或 `SELECT pg_try_advisory_lock(锁ID);`（非阻塞，返回布尔值）。
+
 - **解锁**：`SELECT pg_advisory_unlock(锁ID);`。
 
-B. 事务级锁 (Transaction-level)
+  > 使用`pg_advisory_lock`申请的是排它锁，使用`pg_try_advisory_lock_shared`申请共享锁（多个会话可以同时申请同一个锁ID），这两种锁互斥（除非是同一个会话）。
+
+**B. 事务级锁 (Transaction-level)**
 
 锁在事务结束（Commit 或 Rollback）时自动释放。
 
-- **加锁**：`SELECT pg_advisory_xact_lock(锁ID);`。
-- **释放**：无需手动释放，事务结束即消失。
+- **加锁**：`SELECT pg_advisory_xact_lock(锁ID);`（阻塞直到获取）或 `SELECT pg_try_advisory_xact_lock(锁ID);`（非阻塞，返回布尔值）。
+- **释放**：无需手动释放，事务结束即消失，不管是提交还是回滚都会释放。
+
+**注意：咨询锁是计次的，加了几次锁就要释放几次，只不过事务级锁不需要手动释放，所以不必关心加了几次锁。**
+
+> 由于咨询锁只支持整数作为参数，所以为了最大程度降低碰撞概率，先通过程序计算出一个 long 型数值再获取锁会是比较保险的方案：
+>
+> ```java
+> import com.google.common.hash.Hashing;
+> import java.nio.charset.StandardCharsets;
+> 
+> // 1. 基于 guava 包，这种方式绝对稳定，且碰撞概率极低
+> long lockKey = Hashing.murmur3_128()
+>  .hashString("服务标识:业务段标识:业务ID", StandardCharsets.UTF_8)
+>  .asLong();
+> 
+> // 2. 传入 pg_try_advisory_xact_lock(long)
+> ```
+>
+> 使用公共哈希算法计算 64 位的现实意义：在  2<sup>64</sup> 空间下，产生碰撞需要的样本量超乎想象。即便你每秒产生 1 亿个 Key，也要连续跑几十年才可能撞**一次**。在软件工程中，这种概率远低于 CPU 算错数或内存被宇宙射线干扰的概率。
 
 ------
 
@@ -37,40 +58,127 @@ B. 事务级锁 (Transaction-level)
 
 如果你想在 Java、Python 或 Go 等后端代码中使用，可以直接执行 SQL：
 
-1.3.1. **非阻塞获取锁**：
-
-   ```sql
-   -- 尝试获取名为 12345 的锁，成功返回 true，失败立刻返回 false
-   SELECT pg_try_advisory_lock(12345);
-   ```
-
-1.3.2. **获取锁并执行任务（推荐事务级）**：
+1.3.1. **获取事务锁并执行任务**：
 
    ```sql
    BEGIN;
-   -- 获取事务级锁，如果已被占用则等待
+   -- 尝试获取非阻塞事务锁，成功返回 true，失败立刻返回 false
+   SELECT pg_try_advisory_xact_lock(12345);
+   -- 或者获取阻塞事务级锁，如果已被占用则等待
    SELECT pg_advisory_xact_lock(12345);
-   -- 执行你的业务逻辑...
-   COMMIT; -- 提交后锁自动释放
+   -- 执行你的业务逻辑
+   ...
+   -- 提交后锁自动释放
+   COMMIT; 
    ```
+
+> 如果使用的是**非阻塞方式**，那么业务中需要考虑锁冲突的可能性，并在代码中增加相应的补偿逻辑。
+>
+> 如果使用的是**阻塞方式**，那么业务中需要保证逻辑幂等性，重复操作执行时不应该造成业务异常。
+>
+> **潜在的坑点：**
+> 
+> - 如果申请锁的逻辑外层没有事务，那么获取到的锁会瞬间释放，但`pg_try_advisory_xact_lock`依旧会返回 true （幻觉锁）。
+> 
+> - 阻塞方式获取锁，如果同一个业务ID触发了大量的重复操作，有可能会造成连接耗尽从而引发“雪崩”，如非必要尽量使用非阻塞式。
+
+1.3.2. **会话锁的使用**：
+
+```java
+// 1. 尝试加锁，优先使用 pg_try_advisory_lock，
+//    除非明确业务需要阻塞才用 pg_advisory_lock，
+//    阻塞加锁可能会导致连接耗尽，谨慎判断是否使用。
+Boolean locked = sqlSession.selectOne("pg_try_advisory_lock", 12345L);
+
+if (Boolean.TRUE.equals(locked)) {
+    try {
+        // 2. 只有加锁成功才进入业务逻辑
+        doBusiness();
+    } finally {
+        // 3. 只有加锁成功才执行解锁
+        sqlSession.selectOne("pg_advisory_unlock", 12345L);
+    }
+} else {
+    // 4. 没拿到锁，直接返回失败或抛出自定义异常
+    throw new RuntimeException("系统繁忙，请稍后再试");
+}
+```
+
+> 使用`pg_advisory_unlock`可以解锁一次，使用`pg_advisory_unlock_all`可以解锁当前连接下加的所有会话锁。
+>
+> 比`pg_advisory_unlock_all`更强力的是`DEALLOCATE ALL`和`DISCARD ALL`，其中`DEALLOCATE ALL`是`DISCARD ALL`的操作之一。
+>
+> **`DISCARD ALL` 包含的操作序列：**
+>
+> 1. `SET SESSION AUTHORIZATION DEFAULT`（重置授权）
+> 2. `RESET ALL`（重置所有运行时参数）
+> 3. `DEALLOCATE ALL`（删除所有预编译语句）
+> 4. `CLOSE ALL`（关闭所有打开的游标）
+> 5. `UNLISTEN *`（取消所有监听通知）
+> 6. **`SELECT pg_advisory_unlock_all()`**（释放所有会话级咨询锁）
+> 7. `DISCARD PLANS` / `TEMP` / `SEQUENCES`（清空执行计划、临时表和序列缓存）
+>
+> 妥善处理锁的几种方式：
+>
+> - **在连接池层面“兜底”**：如果连接池支持`testOnReturn` 这类操作，可以在这里执行 `SELECT pg_advisory_unlock_all()`。这样即便 Java 代码写烂了，连接回池子时也会把锁洗干净（会有一些性能损耗）。
+>
+> - **对取锁逻辑做封装**：使用**`AutoCloseable`**对加锁逻辑进行包装，然后通过`try-with-resources`语法糖来完成锁释放。
+>
+> - **使用 Spring 切面**：对业务逻辑增加后置切面逻辑，然后在切面里释放咨询锁。
 
 1.3.3. 为什么选择 PG 替代 Redis？
 
 - **简化架构**：如果你的应用已经在使用 PG，无需为了简单的分布式锁引入 Redis 这种额外的基础设施，降低运维压力。
+
 - **安全性更高**：咨询锁不占用表行，不会导致表膨胀或索引问题，且由数据库内核保证原子性。
+
 - **内置监控**：可以通过 `pg_locks` 视图实时监控哪些进程持有锁，排查问题非常方便。
+
+  > 强行手动“杀掉”持有锁的进程：如果你发现某个锁一直释放不掉（比如某个 Java 客户端由于 Bug 卡住了连接），可以通过数据库管理命令直接干掉该会话。
+  >
+  > - **第一步：通过视图找到谁持有了咨询锁**
+  >
+  >   ```sql
+  >   SELECT pid, locktype, mode, granted, objid FROM pg_locks WHERE locktype = 'advisory';
+  >   ```
+  >
+  > - **第二步：杀掉对应的后台进程 (PID)**
+  >
+  >   ```sql
+  >    SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid = <找到的PID>;
+  >   ```
+  >
+  > *原理：连接物理断开，会话级锁强制释放。*
+  >
+  > 通过锁视图找到的 pid 可以再通过`pg_stat_activity`定位到当前连接执行的语句：
+  >
+  > ```sql
+  > SELECT a.query, l.mode, a.pid 
+  > FROM pg_locks l 
+  > JOIN pg_stat_activity a ON l.pid = a.pid 
+  > WHERE l.locktype = 'advisory';
+  > ```
 
 ------
 
 ## 1.4. **总结**
 
-对于绝大多数业务场景，使用 PG 的 `pg_advisory_xact_lock` 是替代 Redis 分布式锁的最优选，它既保证了安全性，又简化了代码中的“续期”与“防死锁”逻辑。
+架构建议：该怎么选？
 
-咨询锁的问题：
+1. **什么时候用咨询锁？**
+   - **低频、长事务、严谨性极高**。例如：后台跑一个财务结算任务，绝对不能重复。
+   - **优点**：锁和事务在一起，事务回滚锁必释放，绝对不会出现 Redis 锁那种“锁释放了但 DB 还没提交”的微小间隙。
+2. **什么时候用 Redis 锁？**
+   - **高并发、面向用户端**。例如：防止用户重复点击下单、秒杀。
+   - **优点**：它是**“数据库的防火墙”**。把 99% 的无效并发拦截在进入数据库连接池之前。
+
+> 对于携带事务的**低频关键**加锁场景，使用 PG 的 `pg_advisory_xact_lock` 是替代 Redis 分布式锁的最优选，它既保证了安全性，又简化了代码中的“续期”与“防死锁”逻辑。
+>
+> 如果有跨事务的锁需求，又不想引入 Redis 服务，那么会话级咨询锁锁可以作为替代，但必须做好锁释放的防护逻辑，并且必须意识到数据库连接数量是锁性能最大的限制。
+
+咨询锁的局限性：
 1. 无法快速感知锁状态，不够直观，不能像 redis 锁一样查询 key 快速确认某项业务是否存在锁，而且吞吐量不如 redis 锁，并发数量上受限于数据库连接池。
-2. 使用同一个业务锁的服务只能连接同一个库，否则会锁不住，因为咨询锁不会同步到其它节点，而且所连的库挂掉锁也会丢失，如果在事务中有耗时网络任务就无法立刻得到反馈。
-
-扩展内容：pg_try_advisory_xact_lock 
+2. 使用同一个业务锁的服务只能连接同一个库，否则会锁不住，因为咨询锁不会同步到其它节点，而且所连的库挂掉锁也会丢失，重启或切换库后无法续上之前的锁。
 
 # 2. 行锁与数据抢占
 
