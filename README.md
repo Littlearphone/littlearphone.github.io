@@ -376,7 +376,8 @@ netsh interface portproxy show all
 ```
 3.删除端口转发
 ```bash
-netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.253.4 protocol=tcp
+# netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=192.168.253.4 protocol=tcp
+netsh interface portproxy delete v4tov4 listenport=9000
 ```
 来源：[https://blog.csdn.net/fnFenNuDManMan/article/details/103288807](https://blog.csdn.net/fnFenNuDManMan/article/details/103288807)
 
